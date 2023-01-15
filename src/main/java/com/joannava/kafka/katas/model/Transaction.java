@@ -14,19 +14,18 @@ import lombok.extern.jackson.Jacksonized;
 @Data
 public class Transaction {
 
-    private final Integer accountId;
+    private final int accountId;
  
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-ddTHH:mm:ss.SSSZ")
     private final Date date;
-    private final Integer amount;
+    private final int amount;
 
     @JsonProperty("transaction_code")
     private final String transactionCode;
 
     private final String symbol;
 
-    private final Float price;
+    private final float price;
 
-    private final Float total;
+    private final float total;
 
 }
