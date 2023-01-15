@@ -12,6 +12,7 @@ This app uses [Mongodb Sample database](https://github.com/neelabalan/mongodb-sa
 
 - [MongoDB](https://www.mongodb.com/)
 - An Apache Kafka Cluster (local, docker, cloud).
+- Java 17 or higher
 
 ## Katas
 
