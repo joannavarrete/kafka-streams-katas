@@ -1,11 +1,11 @@
-package com.jonnava.kafka.katas;
+package com.joannava.kafka.katas;
 
 import java.io.IOException;
 import java.util.stream.StreamSupport;
 
 import org.bson.Document;
 
-import com.jonnava.kafka.katas.mongo.TransactionCollection;
+import com.joannava.kafka.katas.mongo.TransactionCollection;
 import com.mongodb.client.FindIterable;
 
 public class ProducerApp {

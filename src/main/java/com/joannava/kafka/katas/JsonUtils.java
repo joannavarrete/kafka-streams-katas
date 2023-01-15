@@ -1,4 +1,4 @@
-package com.jonnava.kafka.katas;
+package com.joannava.kafka.katas;
 
 import java.io.IOException;
 import java.util.Collections;

@@ -1,5 +1,5 @@
 
-package com.jonnava.kafka.katas.mongo;
+package com.joannava.kafka.katas.mongo;
 
 import static org.junit.Assert.assertEquals;
 

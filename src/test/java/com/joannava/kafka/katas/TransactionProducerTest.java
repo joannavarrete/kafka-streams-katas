@@ -1,4 +1,4 @@
-package com.jonnava.kafka.katas;
+package com.joannava.kafka.katas;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;

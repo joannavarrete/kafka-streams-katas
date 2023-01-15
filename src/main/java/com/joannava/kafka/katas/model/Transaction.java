@@ -1,4 +1,4 @@
-package com.jonnava.kafka.katas.model;
+package com.joannava.kafka.katas.model;
 
 import java.util.Date;
 
