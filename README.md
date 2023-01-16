@@ -12,7 +12,18 @@ This app uses [Mongodb Sample database](https://github.com/neelabalan/mongodb-sa
 
 - [MongoDB](https://www.mongodb.com/)
 - An Apache Kafka Cluster (local, docker, cloud).
+- [A Graphical interface for kafka is nice to have] (https://github.com/provectus/kafka-ui)
 - Java 17 or higher
+
+## Usage
+- First [import](https://www.mongodb.com/docs/database-tools/mongoimport/) the [sample_analytics](https://github.com/neelabalan/mongodb-sample-dataset/tree/main/sample_analytics) collections in a "sample_analytics" database.
+
+- Configure your connection Strings in app.properties
+
+- Then import Transactions from Mongodb to Kafka with the [Producer](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/main/java/com/joannava/kafka/katas/producers/ProducerApp.java)
+
+- You're realy to start the katas
+
 
 ## Katas
 
