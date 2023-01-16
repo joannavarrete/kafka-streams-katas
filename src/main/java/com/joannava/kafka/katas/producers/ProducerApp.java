@@ -1,4 +1,4 @@
-package com.joannava.kafka.katas;
+package com.joannava.kafka.katas.producers;
 
 import java.io.IOException;
 import java.util.stream.StreamSupport;
@@ -6,6 +6,7 @@ import java.util.stream.StreamSupport;
 import org.bson.Document;
 
 import com.joannava.kafka.katas.mongo.TransactionCollection;
+import com.joannava.kafka.katas.utils.JsonUtils;
 import com.mongodb.client.FindIterable;
 
 public class ProducerApp {

@@ -1,4 +1,4 @@
-package com.joannava.kafka.katas;
+package com.joannava.kafka.katas.utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;

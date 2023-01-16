@@ -1,4 +1,4 @@
-package com.joannava.kafka.katas;
+package com.joannava.kafka.katas.producers;
 
 import java.util.Properties;
 
@@ -6,8 +6,9 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
+
+import static com.joannava.kafka.katas.utils.PropertiesUtils.*;
 import static org.apache.kafka.clients.producer.ProducerConfig.BOOTSTRAP_SERVERS_CONFIG;
-import static com.joannava.kafka.katas.PropertiesUtils.*;
 
 public class TransactionProducer {
 
@@ -16,7 +17,7 @@ public class TransactionProducer {
     public TransactionProducer() {
 
         Properties appProperties = getProperties();
-        
+
         // create Producer Properties
         Properties properties = new Properties();
         properties.setProperty(BOOTSTRAP_SERVERS_CONFIG, appProperties.getProperty(BOOTSTRAP_SERVERS_CONFIG));

@@ -1,6 +1,6 @@
 package com.joannava.kafka.katas.mongo;
 
-import static com.joannava.kafka.katas.PropertiesUtils.getProperties;
+import static com.joannava.kafka.katas.utils.PropertiesUtils.getProperties;
 
 import java.util.Properties;
 

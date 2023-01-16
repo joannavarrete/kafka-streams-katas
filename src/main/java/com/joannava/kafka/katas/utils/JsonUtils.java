@@ -1,4 +1,4 @@
-package com.joannava.kafka.katas;
+package com.joannava.kafka.katas.utils;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 public class JsonUtils {
 
     //Adapting JSON from Mongo to be sent to kafka
-    static List<String> extractTransactionsFromParent(String mongoJson) {
+    public static List<String> extractTransactionsFromParent(String mongoJson) {
         ObjectMapper mapper = new ObjectMapper();
         try {
             ObjectNode root = mapper.readValue(mongoJson, ObjectNode.class);
