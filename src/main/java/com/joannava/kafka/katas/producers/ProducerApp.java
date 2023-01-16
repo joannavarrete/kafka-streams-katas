@@ -22,7 +22,7 @@ public class ProducerApp {
 
         StreamSupport.stream(documents.spliterator(), true)
                 .flatMap(doc -> JsonUtils.extractTransactionsFromParent(doc.toJson()).stream())
-                .forEach(transaction -> producer.send(transaction));
+                .forEach(keyValue -> producer.send(keyValue));
 
         producer.close();
 

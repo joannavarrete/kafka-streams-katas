@@ -3,7 +3,7 @@ package com.joannava.kafka.katas.filters;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.apache.kafka.common.serialization.IntegerDeserializer;
-import org.apache.kafka.common.serialization.VoidSerializer;
+import org.apache.kafka.common.serialization.IntegerSerializer;
 import org.apache.kafka.streams.TestInputTopic;
 import org.apache.kafka.streams.TestOutputTopic;
 import org.apache.kafka.streams.TopologyTestDriver;
@@ -21,14 +21,14 @@ public class SimpleFilterTopologyTest {
 
     private TopologyTestDriver tp;
 
-    private TestInputTopic<Void, Transaction> inputTopic;
+    private TestInputTopic<Integer, Transaction> inputTopic;
     private TestOutputTopic<Integer, Transaction> outputTopic;
 
     @BeforeEach
     public void beforeEach() {
         tp = new TopologyTestDriver(topology.build());
         // setup test topics
-        inputTopic = tp.createInputTopic("transactions", new VoidSerializer(), new TransactionSerializer());
+        inputTopic = tp.createInputTopic("transactions", new IntegerSerializer(), new TransactionSerializer());
         outputTopic = tp.createOutputTopic("simple_filter", new IntegerDeserializer(), new TransactionDeserializer());
 
     }
@@ -40,13 +40,13 @@ public class SimpleFilterTopologyTest {
 
     @Test
     public void whenSendingATransactionWithDifferentAccountIdShouldItShouldBeFilteredOut() {
-        inputTopic.pipeInput(Transaction.builder().accountId(3334).build());
+        inputTopic.pipeInput(3334,Transaction.builder().accountId(3334).build());
         assertEquals(true, outputTopic.isEmpty());
     }
 
     @Test
     public void whenSendingATransactionWithRightAccountItShouldBeKept() {
-        inputTopic.pipeInput(Transaction.builder().accountId(443178).build());
+        inputTopic.pipeInput(443178, Transaction.builder().accountId(443178).build());
         assertEquals(false, outputTopic.isEmpty());
     }
 }

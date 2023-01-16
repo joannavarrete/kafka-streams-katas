@@ -19,8 +19,8 @@ public class BranchTopology {
     }
 
     public Topology build() {
-        KStream<Void, Transaction> stream = builder.stream("transactions",
-                Consumed.with(Serdes.Void(), new TransactionSerdes()));
+        KStream<Integer, Transaction> stream = builder.stream("transactions",
+                Consumed.with(Serdes.Integer(), new TransactionSerdes()));
 
         stream.split()
                 .branch((key, transaction) -> transaction.getTransactionCode().equals("buy"),

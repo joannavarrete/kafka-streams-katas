@@ -29,12 +29,11 @@ public class SimpleFilterTopology {
      * 
      */
     public Topology build() {
-        KStream<Void, Transaction> stream = builder.stream("transactions",
-                Consumed.with(Serdes.Void(), new TransactionSerdes()));
+        KStream<Integer, Transaction> stream = builder.stream("transactions",
+                Consumed.with(Serdes.Integer(), new TransactionSerdes()));
 
         stream
                 .filter((key, transaction) -> transaction.getAccountId() == 443178)
-                .selectKey((key, transaction) -> transaction.getAccountId())
                 .to("simple_filter", Produced.with(Serdes.Integer(), new TransactionSerdes()));
 
         return builder.build();

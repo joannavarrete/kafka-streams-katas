@@ -2,6 +2,7 @@ package com.joannava.kafka.katas.producers;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.streams.KeyValue;
 import org.junit.jupiter.api.Test;
 
 import mockit.Expectations;
@@ -12,7 +13,7 @@ import mockit.Tested;
 public class TransactionProducerTest {
 
     @Mocked
-    KafkaProducer<String, String> kafkaProducer;
+    KafkaProducer<Integer, String> kafkaProducer;
 
     @Tested
     private TransactionProducer producer = new TransactionProducer();
@@ -26,12 +27,12 @@ public class TransactionProducerTest {
             }
         };
 
-        producer.send("Hello World");
+        producer.send(KeyValue.pair(1, "hello world"));
         producer.close();
 
         new FullVerifications() {
             {
-                kafkaProducer.send(new ProducerRecord<String, String>("transactions", "Hello World"));
+                kafkaProducer.send(new ProducerRecord<Integer, String>("transactions", 1, "hello world"));
                 times = 1;
 
                 kafkaProducer.flush();

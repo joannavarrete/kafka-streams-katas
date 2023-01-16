@@ -6,13 +6,14 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.apache.kafka.streams.KeyValue;
 
 import static com.joannava.kafka.katas.utils.PropertiesUtils.*;
 import static org.apache.kafka.clients.producer.ProducerConfig.BOOTSTRAP_SERVERS_CONFIG;
 
 public class TransactionProducer {
 
-    private final KafkaProducer<String, String> producer;
+    private final KafkaProducer<Integer, String> producer;
 
     public TransactionProducer() {
 
@@ -26,12 +27,12 @@ public class TransactionProducer {
         producer = new KafkaProducer<>(properties);
     }
 
-    protected KafkaProducer<String,String> getProducer(){
+    protected KafkaProducer<Integer,String> getProducer(){
         return this.producer;
     }
 
-    public void send(String message){
-        getProducer().send(new ProducerRecord<String,String>("transactions", message));
+    public void send(KeyValue<Integer, String> keyValue){
+        getProducer().send(new ProducerRecord<Integer,String>("transactions", keyValue.key, keyValue.value));
     }
 
     public void close(){
