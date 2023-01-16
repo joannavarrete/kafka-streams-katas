@@ -23,6 +23,23 @@ This app uses [Mongodb Sample database](https://github.com/neelabalan/mongodb-sa
 4. You're ready to start the katas
 5. By default Kafka logs(data) are stored in /tmp/a_kafka_folder so if you want to restart fresh just delete it.
 
+## Example of the event JSON produced from MongoDB to Kafka
+
+```JSON
+{
+   "amount":4345,
+   "transaction_code":"sell",
+   "symbol":"ibm",
+   "price":"180.2130283892771558384993113577365875244140625",
+   "total":"783025.6083514092421182795078",
+   "date":"2013-05-23T00:00:00Z",
+   "accountId":"218657"
+}
+```
+
+```
+Account Id is the key of the "transactions" topic. We are going to group by it and it's more convenient. 
+```
 
 ## Katas
 
@@ -39,8 +56,9 @@ This app uses [Mongodb Sample database](https://github.com/neelabalan/mongodb-sa
 ### Stateful Operations
 
 #### Aggregations
-
+```
 Grouping is a prerequisite for aggregating
+```
 
 - **Count** 
   - Count all Transactions made for an Account
