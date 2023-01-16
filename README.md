@@ -16,13 +16,10 @@ This app uses [Mongodb Sample database](https://github.com/neelabalan/mongodb-sa
 - Java 17 or higher
 
 ## Usage
-- First [import](https://www.mongodb.com/docs/database-tools/mongoimport/) the [sample_analytics](https://github.com/neelabalan/mongodb-sample-dataset/tree/main/sample_analytics) collections in a "sample_analytics" database.
-
-- Configure your connection Strings in app.properties
-
-- Then import Transactions from Mongodb to Kafka with the [Producer](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/main/java/com/joannava/kafka/katas/producers/ProducerApp.java)
-
-- You're realy to start the katas
+1. First [import](https://www.mongodb.com/docs/database-tools/mongoimport/) the [sample_analytics](https://github.com/neelabalan/mongodb-sample-dataset/tree/main/sample_analytics) collections in a "sample_analytics" database.
+2. Configure your connection Strings in app.properties
+3. Then produce Transactions from Mongodb to Kafka with the [Producer](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/main/java/com/joannava/kafka/katas/producers/ProducerApp.java)
+4. You're realy to start the katas
 
 
 ## Katas
