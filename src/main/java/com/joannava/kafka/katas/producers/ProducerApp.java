@@ -9,6 +9,8 @@ import com.joannava.kafka.katas.mongo.TransactionCollection;
 import com.joannava.kafka.katas.utils.JsonUtils;
 import com.mongodb.client.FindIterable;
 
+
+
 public class ProducerApp {
 
     public static void main(String[] args) throws IOException {

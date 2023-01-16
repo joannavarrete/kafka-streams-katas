@@ -7,7 +7,7 @@ public class SimpleFilterApp {
 
         SimpleFilterTopologyBuilder builder = new SimpleFilterTopologyBuilder();
 
-        TopologyExecutor executor = new TopologyExecutor("filter_test", builder.build());
+        TopologyExecutor executor = new TopologyExecutor("simple_filter", builder.build());
 
         executor.execute();
     }
