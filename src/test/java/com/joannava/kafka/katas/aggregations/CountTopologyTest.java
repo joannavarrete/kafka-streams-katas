@@ -12,7 +12,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.joannava.kafka.katas.aggregations.CountTopology;
 import com.joannava.kafka.katas.model.Transaction;
 import com.joannava.kafka.katas.serdes.TransactionSerializer;
 
@@ -37,12 +36,12 @@ public class CountTopologyTest {
     }
 
     @Test
-    public void shouldCountNumberOfTransactionsForAccount(){
+    public void shouldCountNumberOfTransactionsForAccount() {
         inputTopic.pipeInput(Transaction.builder().accountId(1).build());
         inputTopic.pipeInput(Transaction.builder().accountId(1).build());
         inputTopic.pipeInput(Transaction.builder().accountId(1).build());
         assertEquals(3, countTopic.readKeyValuesToMap().get(1));
-        
+
         inputTopic.pipeInput(Transaction.builder().accountId(2).build());
         assertEquals(1, countTopic.readKeyValuesToMap().get(2));
     }
