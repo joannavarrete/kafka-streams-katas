@@ -12,11 +12,24 @@ This app uses [Mongodb Sample database](https://github.com/neelabalan/mongodb-sa
 
 - [MongoDB](https://www.mongodb.com/)
 - An Apache Kafka Cluster (local, docker, cloud).
+- [A Graphical interface for kafka is nice to have](https://github.com/provectus/kafka-ui)
 - Java 17 or higher
+
+## Usage
+1. First [import](https://www.mongodb.com/docs/database-tools/mongoimport/) the [sample_analytics](https://github.com/neelabalan/mongodb-sample-dataset/tree/main/sample_analytics) collections in a "sample_analytics" database.
+2. Configure your connection Strings in app.properties
+3. Then produce Transactions from Mongodb to Kafka with the [Producer](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/main/java/com/joannava/kafka/katas/producers/ProducerApp.java)
+4. You're ready to start the katas
+5. By default Kafka logs(data) are stored in /tmp/a_kafka_folder so if you want to restart fresh just delete it.
+
 
 ## Katas
 
 - Filters
+  - Create a new KStreams App that filters transactions by (accountId, transactionCode,etc) and writes to a new filtered topic.
+  - [Solution](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/main/java/com/joannava/kafka/katas/filters/SimpleFilterTopologyBuilder.java)
+
+- Branches
 
 
 <!-- CONTRIBUTING -->
