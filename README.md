@@ -12,7 +12,7 @@ This app uses [Mongodb Sample database](https://github.com/neelabalan/mongodb-sa
 
 - [MongoDB](https://www.mongodb.com/)
 - An Apache Kafka Cluster (local, docker, cloud).
-- [A Graphical interface for kafka is nice to have] (https://github.com/provectus/kafka-ui)
+- [A Graphical interface for kafka is nice to have](https://github.com/provectus/kafka-ui)
 - Java 17 or higher
 
 ## Usage
