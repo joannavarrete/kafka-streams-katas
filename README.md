@@ -28,11 +28,11 @@ This app uses [Mongodb Sample database](https://github.com/neelabalan/mongodb-sa
 
 ### Stateless Operations
 
-- Filters
+- **Filters**
   - Create a new Topology filters Transactions by (accountId, transactionCode,etc) and writes to a new filtered topic.
   - [Solution](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/main/java/com/joannava/kafka/katas/filters/SimpleFilterTopology.java) -- [Solution Test](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/test/java/com/joannava/kafka/katas/filters/SimpleFilterTopologyTest.java)
 
-- Branches
+- **Branches**
   - Create a new Topology that branches transaction by code ("sell", "buy") and writes two topics, one for each code.
   - [Solution](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/main/java/com/joannava/kafka/katas/branches/BranchTopology.java) -- [Solution Test](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/test/java/com/joannava/kafka/katas/branches/BranchTopologyTest.java)
 
@@ -42,8 +42,9 @@ This app uses [Mongodb Sample database](https://github.com/neelabalan/mongodb-sa
 
 Grouping is a prerequisite for aggregating
 
-- Count 
+- **Count** 
   - Count all Transactions made for an Account
+  - [Solution](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/main/java/com/joannava/kafka/katas/aggregations/CountTopology.java) -- [Solution Test](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/test/java/com/joannava/kafka/katas/aggregations/CountTopologyTest.java)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
