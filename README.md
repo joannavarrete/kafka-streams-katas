@@ -1,3 +1,4 @@
+<a name="readme-top"></a>
 # Apache Kafka Streams katas
 
 Katas/exercises to learn or practice Apache Kafka Streams API
@@ -25,14 +26,26 @@ This app uses [Mongodb Sample database](https://github.com/neelabalan/mongodb-sa
 
 ## Katas
 
+### Stateless Operations
+
 - Filters
-  - Create a new Topology filters transactions by (accountId, transactionCode,etc) and writes to a new filtered topic.
+  - Create a new Topology filters Transactions by (accountId, transactionCode,etc) and writes to a new filtered topic.
   - [Solution](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/main/java/com/joannava/kafka/katas/filters/SimpleFilterTopology.java) -- [Solution Test](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/test/java/com/joannava/kafka/katas/filters/SimpleFilterTopologyTest.java)
 
 - Branches
   - Create a new Topology that branches transaction by code ("sell", "buy") and writes two topics, one for each code.
-  
+  - [Solution](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/main/java/com/joannava/kafka/katas/branches/BranchTopology.java) -- [Solution Test](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/test/java/com/joannava/kafka/katas/branches/BranchTopologyTest.java)
 
+### Stateful Operations
+
+#### Aggregations
+
+Grouping is a prerequisite for aggregating
+
+- Count 
+  - Count all Transactions made for an Account
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
 ### Contributing
