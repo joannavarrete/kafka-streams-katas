@@ -18,6 +18,15 @@ public class SimpleFilterTopologyBuilder {
         builder = new StreamsBuilder();
     }
 
+/**
+* Filtering with KStreams is very easy
+*
+* It is a stateless operation that does not need previous information to execute
+* A filter operation receives a Predicate and returns a Stream
+* 
+* Here we rekey the stream and write it to a topic.
+* 
+*/
     public Topology build() {
         KStream<Void, Transaction> stream = builder.stream("transactions",
                 Consumed.with(Serdes.Void(), new TransactionSerdes()));
@@ -32,4 +41,4 @@ public class SimpleFilterTopologyBuilder {
 
     }
 
-}
+ }
