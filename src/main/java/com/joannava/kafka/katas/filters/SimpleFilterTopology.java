@@ -10,11 +10,11 @@ import org.apache.kafka.streams.kstream.Produced;
 import com.joannava.kafka.katas.model.Transaction;
 import com.joannava.kafka.katas.serdes.TransactionSerdes;
 
-public class SimpleFilterTopologyBuilder {
+public class SimpleFilterTopology {
 
     private final StreamsBuilder builder;
 
-    public SimpleFilterTopologyBuilder() {
+    public SimpleFilterTopology() {
         builder = new StreamsBuilder();
     }
 

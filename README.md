@@ -26,10 +26,12 @@ This app uses [Mongodb Sample database](https://github.com/neelabalan/mongodb-sa
 ## Katas
 
 - Filters
-  - Create a new KStreams App that filters transactions by (accountId, transactionCode,etc) and writes to a new filtered topic.
-  - [Solution](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/main/java/com/joannava/kafka/katas/filters/SimpleFilterTopologyBuilder.java) -- [Solution Test](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/test/java/com/joannava/kafka/katas/filters/SimpleFilterTopologyTest.java)
+  - Create a new Topology filters transactions by (accountId, transactionCode,etc) and writes to a new filtered topic.
+  - [Solution](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/main/java/com/joannava/kafka/katas/filters/SimpleFilterTopology.java) -- [Solution Test](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/test/java/com/joannava/kafka/katas/filters/SimpleFilterTopologyTest.java)
 
 - Branches
+  - Create a new Topology that branches transaction by code ("sell", "buy") and writes two topics, one for each code.
+  
 
 
 <!-- CONTRIBUTING -->

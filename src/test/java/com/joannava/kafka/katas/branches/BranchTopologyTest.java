@@ -1,4 +1,4 @@
-package com.joannava.kafka.katas.filters;
+package com.joannava.kafka.katas.branches;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,7 +7,6 @@ import org.apache.kafka.common.serialization.VoidSerializer;
 import org.apache.kafka.streams.TestInputTopic;
 import org.apache.kafka.streams.TestOutputTopic;
 import org.apache.kafka.streams.TopologyTestDriver;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,22 +15,22 @@ import com.joannava.kafka.katas.model.Transaction;
 import com.joannava.kafka.katas.serdes.TransactionDeserializer;
 import com.joannava.kafka.katas.serdes.TransactionSerializer;
 
-public class SimpleFilterTopologyTest {
-
-    private final SimpleFilterTopology topology = new SimpleFilterTopology();
+public class BranchTopologyTest {
+    private final BranchTopology topology = new BranchTopology();
 
     private TopologyTestDriver tp;
 
     private TestInputTopic<Void, Transaction> inputTopic;
-    private TestOutputTopic<Integer, Transaction> outputTopic;
+    private TestOutputTopic<Integer, Transaction> buysTopic;
+    private TestOutputTopic<Integer, Transaction> sellsTopic;
 
     @BeforeEach
     public void beforeEach() {
         tp = new TopologyTestDriver(topology.build());
         // setup test topics
         inputTopic = tp.createInputTopic("transactions", new VoidSerializer(), new TransactionSerializer());
-        outputTopic = tp.createOutputTopic("simple_filter", new IntegerDeserializer(), new TransactionDeserializer());
-
+        buysTopic = tp.createOutputTopic("buys", new IntegerDeserializer(), new TransactionDeserializer());
+        sellsTopic = tp.createOutputTopic("sells", new IntegerDeserializer(), new TransactionDeserializer());
     }
 
     @AfterEach
@@ -40,14 +39,18 @@ public class SimpleFilterTopologyTest {
     }
 
     @Test
-    public void whenSendingATransactionWithDifferentAccountIdShouldItShouldBeFilteredOut() {
-        inputTopic.pipeInput(Transaction.builder().accountId(3334).build());
-        assertEquals(true, outputTopic.isEmpty());
+    public void whenBuyShouldBePlacedInItsTopic() {
+        inputTopic.pipeInput(Transaction.builder().transactionCode("buy").build());
+        assertEquals(true, sellsTopic.isEmpty());
+        assertEquals(false, buysTopic.isEmpty());
     }
 
     @Test
-    public void whenSendingATransactionWithRightAccountItShouldBeKept() {
-        inputTopic.pipeInput(Transaction.builder().accountId(443178).build());
-        assertEquals(false, outputTopic.isEmpty());
+    public void whenSellShouldBePlacedInItsTopic() {
+        inputTopic.pipeInput(Transaction.builder().transactionCode("sell").build());
+        assertEquals(false, sellsTopic.isEmpty());
+        assertEquals(true, buysTopic.isEmpty());
+
     }
+
 }
