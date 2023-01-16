@@ -20,11 +20,15 @@ This app uses [Mongodb Sample database](https://github.com/neelabalan/mongodb-sa
 2. Configure your connection Strings in app.properties
 3. Then produce Transactions from Mongodb to Kafka with the [Producer](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/main/java/com/joannava/kafka/katas/producers/ProducerApp.java)
 4. You're realy to start the katas
+5. By default Kafka logs(data) are stored in /tmp/a_kafka_folder so if you want to restart fresh just delete it.
 
 
 ## Katas
 
 - Filters
+  - Create a new KStreams App that filter transactions by (accountId, transactionCode,etc) and write to a new filtered topic.
+
+- Branches
 
 
 <!-- CONTRIBUTING -->
