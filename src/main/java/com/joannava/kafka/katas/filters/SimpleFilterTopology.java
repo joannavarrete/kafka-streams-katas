@@ -1,22 +1,15 @@
 package com.joannava.kafka.katas.filters;
 
 import org.apache.kafka.common.serialization.Serdes;
-import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.Topology;
-import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Produced;
 
+import com.joannava.kafka.katas.FromTransactionsStreamTopology;
 import com.joannava.kafka.katas.model.Transaction;
-import com.joannava.kafka.katas.serdes.TransactionSerdes;
+import com.joannava.kafka.katas.serdes.JacksonSerdes;
 
-public class SimpleFilterTopology {
-
-    private final StreamsBuilder builder;
-
-    public SimpleFilterTopology() {
-        builder = new StreamsBuilder();
-    }
+public class SimpleFilterTopology extends FromTransactionsStreamTopology {
 
     /**
      * Filtering with KStreams is very easy
@@ -29,12 +22,12 @@ public class SimpleFilterTopology {
      * 
      */
     public Topology build() {
-        KStream<Integer, Transaction> stream = builder.stream("transactions",
-                Consumed.with(Serdes.Integer(), new TransactionSerdes()));
 
+        KStream<Integer, Transaction> stream = getTransactionsStream();
         stream
                 .filter((key, transaction) -> transaction.getAccountId() == 443178)
-                .to("simple_filter", Produced.with(Serdes.Integer(), new TransactionSerdes()));
+                .to("simple_filter",
+                        Produced.with(Serdes.Integer(), new JacksonSerdes<Transaction>(Transaction.class)));
 
         return builder.build();
 

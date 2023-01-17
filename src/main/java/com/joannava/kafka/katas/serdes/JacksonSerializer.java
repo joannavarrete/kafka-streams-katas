@@ -4,14 +4,13 @@ import org.apache.kafka.common.serialization.Serializer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.joannava.kafka.katas.model.Transaction;
 
-public class TransactionSerializer implements Serializer<Transaction>{
+public class JacksonSerializer <T>  implements Serializer<T> {
 
-    private ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper = new ObjectMapper();
 
     @Override
-    public byte[] serialize(String topic, Transaction data) {
+    public byte[] serialize(String topic, T data) {
         try {
             return mapper.writeValueAsBytes(data);
         } catch (JsonProcessingException e) {
@@ -19,6 +18,5 @@ public class TransactionSerializer implements Serializer<Transaction>{
             return null;
         }
     }
-
     
 }

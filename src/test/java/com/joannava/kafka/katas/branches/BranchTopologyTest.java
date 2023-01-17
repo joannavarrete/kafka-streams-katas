@@ -12,14 +12,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.joannava.kafka.katas.model.Transaction;
-import com.joannava.kafka.katas.serdes.TransactionDeserializer;
-import com.joannava.kafka.katas.serdes.TransactionSerializer;
+import com.joannava.kafka.katas.serdes.JacksonSerdes;
 
 public class BranchTopologyTest {
     private final BranchTopology topology = new BranchTopology();
 
     private TopologyTestDriver tp;
 
+    private JacksonSerdes<Transaction> jacksonSerdes;
     private TestInputTopic<Integer, Transaction> inputTopic;
     private TestOutputTopic<Integer, Transaction> buysTopic;
     private TestOutputTopic<Integer, Transaction> sellsTopic;
@@ -27,20 +27,23 @@ public class BranchTopologyTest {
     @BeforeEach
     public void beforeEach() {
         tp = new TopologyTestDriver(topology.build());
+        jacksonSerdes = new JacksonSerdes<>(Transaction.class);
+
         // setup test topics
-        inputTopic = tp.createInputTopic("transactions", new IntegerSerializer(), new TransactionSerializer());
-        buysTopic = tp.createOutputTopic("buys", new IntegerDeserializer(), new TransactionDeserializer());
-        sellsTopic = tp.createOutputTopic("sells", new IntegerDeserializer(), new TransactionDeserializer());
+        inputTopic = tp.createInputTopic("transactions", new IntegerSerializer(), jacksonSerdes.serializer());
+        buysTopic = tp.createOutputTopic("buys", new IntegerDeserializer(), jacksonSerdes.deserializer());
+        sellsTopic = tp.createOutputTopic("sells", new IntegerDeserializer(), jacksonSerdes.deserializer());
     }
 
     @AfterEach
     public void tearDown() {
         tp.close();
+        jacksonSerdes.close();
     }
 
     @Test
     public void whenBuyShouldBePlacedInItsTopic() {
-        inputTopic.pipeInput(1,Transaction.builder().transactionCode("buy").build());
+        inputTopic.pipeInput(1, Transaction.builder().transactionCode("buy").build());
         assertEquals(true, sellsTopic.isEmpty());
         assertEquals(false, buysTopic.isEmpty());
     }

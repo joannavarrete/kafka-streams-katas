@@ -10,17 +10,20 @@ import org.apache.kafka.streams.kstream.Produced;
 import com.joannava.kafka.katas.FromTransactionsStreamTopology;
 import com.joannava.kafka.katas.model.Transaction;
 
-public class SumSellsTopology extends FromTransactionsStreamTopology{
+public class NetProfitTopology extends FromTransactionsStreamTopology {
+
 
     public Topology build() {
 
         KStream<Integer, Transaction> stream = getTransactionsStream();
         
-        stream.filter((key, transaction) -> transaction.getTransactionCode().equals("sell"))
-                .map((key, transaction) -> KeyValue.pair(key, transaction.getTotal()))
+        stream
+                .map((key, transaction) -> KeyValue.pair(key,
+                        transaction.getTransactionCode().equals("sell") ? transaction.getTotal()
+                                : -transaction.getTotal()))
                 .groupByKey(Grouped.with(Serdes.Integer(), Serdes.Float()))
                 .reduce(Float::sum)
-                .toStream().to("total_sold_by_account", Produced.with(Serdes.Integer(), Serdes.Float()));
+                .toStream().to("net_profit_by_account", Produced.with(Serdes.Integer(), Serdes.Float()));
 
         return builder.build();
     }

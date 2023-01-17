@@ -12,8 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.joannava.kafka.katas.model.Transaction;
-import com.joannava.kafka.katas.serdes.TransactionDeserializer;
-import com.joannava.kafka.katas.serdes.TransactionSerializer;
+import com.joannava.kafka.katas.serdes.JacksonSerdes;
 
 public class SimpleFilterTopologyTest {
 
@@ -21,26 +20,30 @@ public class SimpleFilterTopologyTest {
 
     private TopologyTestDriver tp;
 
+    private JacksonSerdes<Transaction> jacksonSerdes;
     private TestInputTopic<Integer, Transaction> inputTopic;
     private TestOutputTopic<Integer, Transaction> outputTopic;
 
     @BeforeEach
     public void beforeEach() {
         tp = new TopologyTestDriver(topology.build());
+        jacksonSerdes = new JacksonSerdes<Transaction>(Transaction.class);
+
         // setup test topics
-        inputTopic = tp.createInputTopic("transactions", new IntegerSerializer(), new TransactionSerializer());
-        outputTopic = tp.createOutputTopic("simple_filter", new IntegerDeserializer(), new TransactionDeserializer());
+        inputTopic = tp.createInputTopic("transactions", new IntegerSerializer(), jacksonSerdes.serializer());
+        outputTopic = tp.createOutputTopic("simple_filter", new IntegerDeserializer(), jacksonSerdes.deserializer());
 
     }
 
     @AfterEach
     public void tearDown() {
         tp.close();
+        jacksonSerdes.close();
     }
 
     @Test
     public void whenSendingATransactionWithDifferentAccountIdShouldItShouldBeFilteredOut() {
-        inputTopic.pipeInput(3334,Transaction.builder().accountId(3334).build());
+        inputTopic.pipeInput(3334, Transaction.builder().accountId(3334).build());
         assertEquals(true, outputTopic.isEmpty());
     }
 

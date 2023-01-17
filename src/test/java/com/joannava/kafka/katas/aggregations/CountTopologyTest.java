@@ -13,7 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.joannava.kafka.katas.model.Transaction;
-import com.joannava.kafka.katas.serdes.TransactionSerializer;
+import com.joannava.kafka.katas.serdes.JacksonSerializer;
 
 public class CountTopologyTest {
     private CountTopology topology = new CountTopology();
@@ -26,7 +26,7 @@ public class CountTopologyTest {
     public void beforeEach() {
         tp = new TopologyTestDriver(topology.build());
         // setup test topics
-        inputTopic = tp.createInputTopic("transactions", new IntegerSerializer(), new TransactionSerializer());
+        inputTopic = tp.createInputTopic("transactions", new IntegerSerializer(), new JacksonSerializer<Transaction>());
         countTopic = tp.createOutputTopic("count_by_accountId", new IntegerDeserializer(), new LongDeserializer());
     }
 

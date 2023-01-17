@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import com.joannava.kafka.katas.model.Transaction;
 
-public class TransactionDeserializerTest {
+public class JacksonDeserializerTest {
 
     private String json = """
                     {
@@ -21,11 +21,11 @@ public class TransactionDeserializerTest {
 
                         """;
 
-    private TransactionDeserializer transactionDeserializer = new TransactionDeserializer();
+    private JacksonDeserializer<Transaction> deserializer = new JacksonDeserializer<>(Transaction.class);
 
     @Test
     public void shouldDeserializeProperly() {
-        Transaction transaction = transactionDeserializer.deserialize("hello world", json.getBytes());
+        Transaction transaction = deserializer.deserialize("hello world", json.getBytes());
         assertEquals(218657, transaction.getAccountId());
     }
 }
