@@ -37,9 +37,9 @@ This app uses [Mongodb Sample database](https://github.com/neelabalan/mongodb-sa
 }
 ```
 
-```
-Account Id is the key of the "transactions" topic. We are going to group by it and it's more convenient. 
-```
+
+**Account Id** is the **key** of the "transactions" **topic**. We are going to group by it and it's more convenient. 
+
 
 ## Katas
 
@@ -56,6 +56,7 @@ Account Id is the key of the "transactions" topic. We are going to group by it a
 ### Stateful Operations
 
 #### Aggregations
+
 ```
 Grouping is a prerequisite for aggregating
 ```
@@ -63,6 +64,10 @@ Grouping is a prerequisite for aggregating
 - **Count** 
   - Count all Transactions made for an Account
   - [Solution](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/main/java/com/joannava/kafka/katas/aggregations/CountTopology.java) -- [Solution Test](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/test/java/com/joannava/kafka/katas/aggregations/CountTopologyTest.java)
+
+- **Sum**
+   - Sum all sellings earnings by Account
+   - [Solution](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/main/java/com/joannava/kafka/katas/aggregations/SumSellsTopology.java) -- [Solution Test](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/test/java/com/joannava/kafka/katas/aggregations/SumSellsTopologyTest.java)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
