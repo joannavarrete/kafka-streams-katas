@@ -73,6 +73,9 @@ Grouping is a prerequisite for aggregating
    - Calculate the net profit (selling - buying) by Account
    - [Solution](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/main/java/com/joannava/kafka/katas/aggregations/NetProfitTopology.java) -- [Solution Test](https://github.com/joannavarrete/kafka-streams-katas/blob/main/src/test/java/com/joannava/kafka/katas/aggregations/NetProfitTopologyTest.java)
 
+- **Average**
+   - Calculate the average price from symbol (ibm,ebay,etc..)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
