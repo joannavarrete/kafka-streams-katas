@@ -14,18 +14,14 @@ import lombok.extern.jackson.Jacksonized;
 @Data
 public class Transaction {
 
-    private final int accountId;
- 
-    private final Date date;
-    private final int amount;
-
     @JsonProperty("transaction_code")
     private final String transactionCode;
-
+    
+    private final int accountId;
+    private final Date date;
+    private final int amount;
     private final String symbol;
-
     private final BigDecimal price;
-
     private final BigDecimal total;
 
 }
