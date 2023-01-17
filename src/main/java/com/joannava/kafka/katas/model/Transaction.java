@@ -1,5 +1,6 @@
 package com.joannava.kafka.katas.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,8 +24,8 @@ public class Transaction {
 
     private final String symbol;
 
-    private final float price;
+    private final BigDecimal price;
 
-    private final float total;
+    private final BigDecimal total;
 
 }
