@@ -1,6 +1,6 @@
-package com.joannava.kafka.katas.aggregations;
+package com.joannava.kafka.katas.aggregations; import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.Map;
 
 import org.apache.kafka.common.serialization.IntegerDeserializer;
 import org.apache.kafka.common.serialization.IntegerSerializer;
@@ -40,10 +40,11 @@ public class CountTopologyTest {
         inputTopic.pipeInput(1,Transaction.builder().accountId(1).build());
         inputTopic.pipeInput(1,Transaction.builder().accountId(1).build());
         inputTopic.pipeInput(1,Transaction.builder().accountId(1).build());
-        assertEquals(3, countTopic.readKeyValuesToMap().get(1));
-
         inputTopic.pipeInput(2,Transaction.builder().accountId(2).build());
-        assertEquals(1, countTopic.readKeyValuesToMap().get(2));
+       
+        Map<Integer, Long> keyValue = countTopic.readKeyValuesToMap();
+        assertEquals(3, keyValue.get(1));
+        assertEquals(1, keyValue.get(2));
     }
 
 }
