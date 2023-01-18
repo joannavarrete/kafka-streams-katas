@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.apache.kafka.common.serialization.Deserializer;
 
+import com.fasterxml.jackson.core.json.JsonReadFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JacksonDeserializer<T> implements Deserializer<T> {
@@ -15,6 +16,7 @@ public class JacksonDeserializer<T> implements Deserializer<T> {
     public JacksonDeserializer(Class<T> type) {
         this.type = type;
         mapper = new ObjectMapper();
+        mapper.configure(JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS.mappedFeature(), true);
     }
 
     @Override
