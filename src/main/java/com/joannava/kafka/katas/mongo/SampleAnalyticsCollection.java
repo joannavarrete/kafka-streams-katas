@@ -12,16 +12,16 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
  
-public class TransactionCollection {
+public class SampleAnalyticsCollection {
 
     private final MongoCollection<Document> collection;
 
-    public TransactionCollection() {
+    public SampleAnalyticsCollection(String collectionName) {
         Properties appProperties = getProperties();
      
         MongoClient mongoClient = MongoClients.create(appProperties.getProperty("mongo.connection.string"));
         MongoDatabase database = mongoClient.getDatabase("sample_analytics");
-        collection = database.getCollection("transactions");
+        collection = database.getCollection(collectionName);
     }
 
     protected MongoCollection<Document> getMongoCollection() {

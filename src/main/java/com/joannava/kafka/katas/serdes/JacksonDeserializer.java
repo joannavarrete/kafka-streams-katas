@@ -26,5 +26,4 @@ public class JacksonDeserializer<T> implements Deserializer<T> {
             return null;
         }
     }
-
 }

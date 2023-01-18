@@ -2,6 +2,7 @@ package com.joannava.kafka.katas.producers;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.serialization.IntegerSerializer;
 import org.apache.kafka.streams.KeyValue;
 import org.junit.jupiter.api.Test;
 
@@ -10,13 +11,13 @@ import mockit.FullVerifications;
 import mockit.Mocked;
 import mockit.Tested;
 
-public class TransactionProducerTest {
+public class JsonProducerTest {
 
     @Mocked
     KafkaProducer<Integer, String> kafkaProducer;
 
     @Tested
-    private TransactionProducer producer = new TransactionProducer();
+    private JsonProducer<Integer> producer = new JsonProducer<>(new IntegerSerializer());
 
     @Test
     public void whenSendingAmessageThetopicShouldBeTransactionsAndShouldCallSendAndFlushAndClose() {
@@ -27,7 +28,7 @@ public class TransactionProducerTest {
             }
         };
 
-        producer.send(KeyValue.pair(1, "hello world"));
+        producer.send("transactions", KeyValue.pair(1, "hello world"));
         producer.close();
 
         new FullVerifications() {

@@ -14,13 +14,13 @@ import mockit.FullVerifications;
 import mockit.Mocked;
 import mockit.Tested;
 
-public class TransactionCollectionTest {
+public class SampleAnalyticsCollectionTest {
 
     @Mocked
     private MongoCollection<Document> mongoCollection;
 
     @Tested
-    private TransactionCollection collection = new TransactionCollection();
+    private SampleAnalyticsCollection collection = new SampleAnalyticsCollection("transactions");
 
     private static final String dbName = "sample_analytics";
     private static final String collectionName = "transactions";
