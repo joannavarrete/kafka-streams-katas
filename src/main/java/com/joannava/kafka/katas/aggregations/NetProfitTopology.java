@@ -9,11 +9,11 @@ import org.apache.kafka.streams.kstream.Grouped;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Produced;
 
-import com.joannava.kafka.katas.FromTransactionsStreamTopology;
+import com.joannava.kafka.katas.SampleAnalyticsStreamTopology;
 import com.joannava.kafka.katas.model.Transaction;
 import com.joannava.kafka.katas.serdes.JacksonSerdes;
 
-public class NetProfitTopology extends FromTransactionsStreamTopology {
+public class NetProfitTopology extends SampleAnalyticsStreamTopology {
 
     public Topology build() {
 

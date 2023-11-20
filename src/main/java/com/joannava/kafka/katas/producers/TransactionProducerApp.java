@@ -3,6 +3,7 @@ package com.joannava.kafka.katas.producers;
 import java.io.IOException;
 import java.util.stream.StreamSupport;
 
+import com.sun.source.tree.TryTree;
 import org.apache.kafka.common.serialization.IntegerSerializer;
 import org.bson.Document;
 
@@ -23,8 +24,16 @@ public class TransactionProducerApp {
 
         StreamSupport.stream(documents.spliterator(), true)
                 .flatMap(doc -> JsonUtils.extractTransactionsFromParent(doc.toJson()).stream())
-                .forEach(keyValue -> producer.send("transactions", keyValue));
-
+                .forEach(keyValue -> {
+                            try {
+                                Thread.sleep(100);
+                                producer.send("transactions", keyValue);
+//                                System.out.println(keyValue);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        });
+//        .forEach(keyValue -> System.out.println(keyValue));
         producer.close();
 
     }

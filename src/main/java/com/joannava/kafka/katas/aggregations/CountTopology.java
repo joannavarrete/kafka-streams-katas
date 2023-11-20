@@ -5,10 +5,10 @@ import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Produced;
 
-import com.joannava.kafka.katas.FromTransactionsStreamTopology;
+import com.joannava.kafka.katas.SampleAnalyticsStreamTopology;
 import com.joannava.kafka.katas.model.Transaction;
 
-public class CountTopology extends FromTransactionsStreamTopology {
+public class CountTopology extends SampleAnalyticsStreamTopology {
 
     public Topology build() {
 
