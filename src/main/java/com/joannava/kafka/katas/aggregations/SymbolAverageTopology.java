@@ -12,12 +12,12 @@ import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Materialized;
 import org.apache.kafka.streams.kstream.Produced;
 
-import com.joannava.kafka.katas.FromTransactionsStreamTopology;
+import com.joannava.kafka.katas.SampleAnalyticsStreamTopology;
 import com.joannava.kafka.katas.model.CountAndSum;
 import com.joannava.kafka.katas.model.Transaction;
 import com.joannava.kafka.katas.serdes.JacksonSerdes;
 
-public class SymbolAverageTopology extends FromTransactionsStreamTopology {
+public class SymbolAverageTopology extends SampleAnalyticsStreamTopology {
 
     @Override
     public Topology build() {

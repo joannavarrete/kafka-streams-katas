@@ -5,11 +5,11 @@ import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Produced;
 
-import com.joannava.kafka.katas.FromTransactionsStreamTopology;
+import com.joannava.kafka.katas.SampleAnalyticsStreamTopology;
 import com.joannava.kafka.katas.model.Transaction;
 import com.joannava.kafka.katas.serdes.JacksonSerdes;
 
-public class SimpleFilterTopology extends FromTransactionsStreamTopology {
+public class SimpleFilterTopology extends SampleAnalyticsStreamTopology {
 
     /**
      * Filtering with KStreams is very easy
